@@ -1,2 +1,2 @@
-# LineFollower-SemReh_App
+# LineFollower_SemReh_App
 Aplicação em Flutter para controle do robô.
