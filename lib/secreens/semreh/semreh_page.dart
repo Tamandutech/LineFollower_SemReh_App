@@ -21,9 +21,8 @@ class _SemrehPageState extends State<SemrehPage> {
   // It will be displayed in a Text widget
   String? _otp;
 
-  List<String> values = ['Valor 1', 'Valor 2', 'Valor 3'];
-  String? selectedItem = 'Valor 1';
-  String dropdownValue = 'One';
+  List<String> values = ['VALOR 1', 'VALOR 2', 'VALOR 3'];
+  String? selectedItem = 'VALOR 1';
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +65,53 @@ class _SemrehPageState extends State<SemrehPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: colors.Colors.contrastColor,
-                              borderRadius: BorderRadius.circular(5)),
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            'Kp',
-                            style: TextStyle(
-                                color: colors.Colors.primaryColor,
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold),
-                          ),
+                        Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: colors.Colors.contrastColor,
+                                  borderRadius: BorderRadius.circular(5)),
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                'Kp',
+                                style: TextStyle(
+                                    color: colors.Colors.primaryColor,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              margin: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: colors.Colors.primaryColor, width: 2),
+
+                              ),
+                              child: DropdownButton<String>(
+                                borderRadius: BorderRadius.circular(12),
+                                value: selectedItem,
+                                isExpanded: true,
+                                icon: const Icon(Icons.arrow_drop_down, color: Colors.green),
+                                style: const TextStyle(color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedItem = newValue!;
+                                  });
+                                },
+                                items: values
+                                    .map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+
+                            ),
+                          ],
                         ),
                         const SizedBox(
                           height: 20,
@@ -168,6 +202,7 @@ class _SemrehPageState extends State<SemrehPage> {
                 ],
               ), // Implement 5 input fields
             ),
+
 
             InProgressSection(),
           ],
