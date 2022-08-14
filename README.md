@@ -1,6 +1,6 @@
-# line_follower_controller
+# Line Follower Controller
 
-A new Flutter project.
+Aplicativo em Flutter para auxiliar no controle do robô.
 
 ## Getting Started
 
