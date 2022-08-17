@@ -24,7 +24,6 @@ class _SemrehPageState extends State<SemrehPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ContainerController(),
             MainContainer(),
           ],
         ),
