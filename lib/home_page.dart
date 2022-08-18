@@ -25,6 +25,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               // ------------ REFATORAR ----------------
               InkWell(
+                highlightColor: Colors.green.withOpacity(0.5),
+                splashColor: Colors.greenAccent,
+                borderRadius: BorderRadius.all(Radius.circular(50)),
                 onTap: () {
                   setState(() {
                     boxColor = Colors.green;
@@ -42,6 +45,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               InkWell(
+                highlightColor: Colors.green.withOpacity(0.5),
+                splashColor: Colors.greenAccent,
+                borderRadius: BorderRadius.all(Radius.circular(50)),
                 onTap: () {
                   setState(() {
                     boxColor = Colors.green;

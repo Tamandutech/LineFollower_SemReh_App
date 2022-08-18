@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 import 'package:line_follower_controller/widgets/main_container.dart';
-import 'package:line_follower_controller/widgets/container_controller.dart';
+import 'package:line_follower_controller/widgets/list_cards.dart';
 
 class SemrehPage extends StatefulWidget {
   const SemrehPage({Key? key}) : super(key: key);
@@ -21,16 +21,27 @@ class _SemrehPageState extends State<SemrehPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MainContainer(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              MainContainer(),
+              const SizedBox(
+                height: 30,
+              ),
+              RecommendedSection()
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+
 
 class InProgressSection extends StatelessWidget {
   const InProgressSection({Key? key}) : super(key: key);
