@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
-
 import 'package:line_follower_controller/widgets/speed_controller.dart';
+import 'package:line_follower_controller/widgets/circle_button_image.dart';
 
 class RecommendedSection extends StatelessWidget {
   const RecommendedSection({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class RecommendedSection extends StatelessWidget {
                 SpeedController(),
                 // RecommendedItemCard(title: 'Happiness and Joyful', session: '4', iconData: Icons.emoji_emotions_outlined,),
                 SizedBox(width: 15,),
-                RecommendedItemCard(title: 'Lovely and Beautiful Vibes', session: '7', iconData: Icons.favorite_border,),
+                CircleImageButton(),
                 SizedBox(width: 15,),
                 RecommendedItemCard(title: 'Soothing and Soulful', session: '2', iconData: Icons.ac_unit,),
               ],
