@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 import 'package:line_follower_controller/widgets/otp_input.dart';
 
-class ContainerController extends StatefulWidget {
-  const ContainerController({Key? key}) : super(key: key);
+class KdController extends StatefulWidget {
+  const KdController({Key? key}) : super(key: key);
 
   @override
-  State<ContainerController> createState() => _ContainerControllerState();
+  State<KdController> createState() => _KdController();
 }
 
-class _ContainerControllerState extends State<ContainerController> {
+class _KdController extends State<KdController> {
   final TextEditingController _fieldOne = TextEditingController();
   final TextEditingController _fieldTwo = TextEditingController();
   final TextEditingController _fieldThree = TextEditingController();
