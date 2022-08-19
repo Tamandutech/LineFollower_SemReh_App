@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/secreens/braian/braian_page.dart';
 import 'package:line_follower_controller/secreens/semreh/semreh_page.dart';
+import 'package:line_follower_controller/colors.dart' as colors;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,44 +24,45 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // ------------ REFATORAR ----------------
-              InkWell(
-                highlightColor: Colors.green.withOpacity(0.5),
-                splashColor: Colors.greenAccent,
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                onTap: () {
-                  setState(() {
-                    boxColor = Colors.green;
-                    Future.delayed(Duration(seconds: 1), (){
+              Material(
+                color: Colors.green[300],
+                elevation: 10,
+                borderRadius: BorderRadius.all(Radius.circular(40)),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: InkWell(
+                  splashColor: Colors.green,
+                  onTap: () {
+                    Future.delayed(Duration(milliseconds: 500), (){
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SemrehPage()));
                     });
-                  }
-                  );
-                },
-                child: Ink(
-                  height: MediaQuery.of(context).size.height*0.22, // 180
-                  width: MediaQuery.of(context).size.height*0.22, // 180
-                  decoration: BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(30)),
-                  child: Image(image: NetworkImage('https://img.icons8.com/3d-fluency/344/3d-fluency-blue-car.png')),
+                  },
+                  child: Ink.image(
+                    image: NetworkImage('https://img.icons8.com/3d-fluency/344/3d-fluency-blue-car.png'),
+                    height: 180,
+                    width: 180,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              InkWell(
-                highlightColor: Colors.green.withOpacity(0.5),
-                splashColor: Colors.greenAccent,
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                onTap: () {
-                  setState(() {
-                    boxColor = Colors.green;
-                    Future.delayed(Duration(seconds: 1), (){
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BraianPage()));
+              // ------------ REFATORAR ----------------
+              Material(
+                color: Colors.green[300],
+                elevation: 10,
+                borderRadius: BorderRadius.all(Radius.circular(40)),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: InkWell(
+                  splashColor: Colors.green,
+                  onTap: () {
+                    Future.delayed(Duration(milliseconds: 500), (){
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SemrehPage()));
                     });
-                  });
-                },
-                child: Ink(
-                  height: MediaQuery.of(context).size.height*0.22, // 180
-                  width: MediaQuery.of(context).size.height*0.22, // 180
-                  decoration: BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(30)),
-                  child: Image(image: NetworkImage('https://img.icons8.com/emoji/344/oncoming-automobile.png')),
+                  },
+                  child: Ink.image(
+                    image: NetworkImage('https://img.icons8.com/emoji/344/oncoming-automobile.png'),
+                    height: 180,
+                    width: 180,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],
