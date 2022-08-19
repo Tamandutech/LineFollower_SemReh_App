@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CircleImageButton extends StatefulWidget {
-  const CircleImageButton({Key? key}) : super(key: key);
+class StopButton extends StatefulWidget {
+  const StopButton({Key? key}) : super(key: key);
 
 
   @override
-  State<CircleImageButton> createState() => _CircleImageButtonState();
+  State<StopButton> createState() => _StopButton();
 }
 
-class _CircleImageButtonState extends State<CircleImageButton> {
+class _StopButton extends State<StopButton> {
 
 
 

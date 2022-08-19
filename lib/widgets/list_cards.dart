@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 import 'package:line_follower_controller/widgets/speed_controller.dart';
-import 'package:line_follower_controller/widgets/circle_button_image.dart';
+import 'package:line_follower_controller/widgets/stop_button.dart';
+import 'package:line_follower_controller/widgets/reset_button.dart';
+import 'package:line_follower_controller/widgets/arrow_with_spineer.dart';
 
 class RecommendedSection extends StatelessWidget {
   const RecommendedSection({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class RecommendedSection extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                 Text(
                   'Velocidade',
                   style: TextStyle(
                     fontSize: 20,
@@ -25,7 +27,7 @@ class RecommendedSection extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                Icon(Icons.arrow_forward_rounded, color: Colors.green)
+                ArrowSpinner(),
               ],
             ),
           ),
@@ -37,11 +39,10 @@ class RecommendedSection extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 SpeedController(),
-                // RecommendedItemCard(title: 'Happiness and Joyful', session: '4', iconData: Icons.emoji_emotions_outlined,),
                 SizedBox(width: 15,),
-                CircleImageButton(),
+                StopButton(),
                 SizedBox(width: 15,),
-                RecommendedItemCard(title: 'Soothing and Soulful', session: '2', iconData: Icons.ac_unit,),
+                ResetButton(),
               ],
             ),
           )

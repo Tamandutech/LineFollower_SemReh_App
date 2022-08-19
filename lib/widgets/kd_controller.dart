@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 import 'package:line_follower_controller/widgets/otp_input.dart';
 
-class SpeedController extends StatefulWidget {
-  const SpeedController({Key? key}) : super(key: key);
+class ContainerController extends StatefulWidget {
+  const ContainerController({Key? key}) : super(key: key);
 
   @override
-  State<SpeedController> createState() => _SpeedController();
+  State<ContainerController> createState() => _ContainerControllerState();
 }
 
-class _SpeedController extends State<SpeedController> {
+class _ContainerControllerState extends State<ContainerController> {
   final TextEditingController _fieldOne = TextEditingController();
   final TextEditingController _fieldTwo = TextEditingController();
   final TextEditingController _fieldThree = TextEditingController();
-
+  final TextEditingController _fieldFour = TextEditingController();
+  final TextEditingController _fieldFive = TextEditingController();
 
   // This is the entered code
   // It will be displayed in a Text widget
@@ -43,18 +44,20 @@ class _SpeedController extends State<SpeedController> {
                             color: colors.Colors.contrastColor,
                             borderRadius: BorderRadius.circular(5)),
                         padding: const EdgeInsets.all(10),
-                        child: Icon(
-                          Icons.flash_on_rounded,
-                          color: colors.Colors.primaryColor,
-                          size: 40,
+                        child: Text(
+                          'Kd',
+                          style: TextStyle(
+                              color: colors.Colors.primaryColor,
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
-                        width: 150,
+                        width: 200,
                         margin:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 0),
                         padding:
-                        EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
@@ -86,36 +89,41 @@ class _SpeedController extends State<SpeedController> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
             const SizedBox(
-              height: 26,
+              height: 20,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OtpInput(_fieldOne, true),
-                const SizedBox(
-                  width: 10,
-                ),
+                Text('.',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: colors.Colors.primaryColor)),
                 OtpInput(_fieldTwo, false),
-                const SizedBox(
-                  width: 10,
-                ),
                 OtpInput(_fieldThree, false),
+                OtpInput(_fieldFour, false),
+                OtpInput(_fieldFive, false),
               ],
             ),
             const SizedBox(
-              height: 15,
+              height: 30,
             ),
             ElevatedButton(
               onPressed: () {
                 setState(() {
                   _otp = _fieldOne.text +
                       _fieldTwo.text +
-                      _fieldThree.text;
-
+                      _fieldThree.text +
+                      _fieldFour.text +
+                      _fieldFive.text;
                 });
               },
               style: ButtonStyle(
@@ -127,7 +135,7 @@ class _SpeedController extends State<SpeedController> {
               ),
               child: const Text(
                 'ENVIAR',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 25),
               ),
             ),
           ],

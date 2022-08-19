@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.all(Radius.circular(40)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: InkWell(
-                  splashColor: Colors.green,
+                  splashColor: Colors.greenAccent,
                   onTap: () {
                     Future.delayed(Duration(milliseconds: 500), (){
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SemrehPage()));
@@ -51,10 +51,10 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.all(Radius.circular(40)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: InkWell(
-                  splashColor: Colors.green,
+                  splashColor: Colors.greenAccent,
                   onTap: () {
                     Future.delayed(Duration(milliseconds: 500), (){
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SemrehPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BraianPage()));
                     });
                   },
                   child: Ink.image(
