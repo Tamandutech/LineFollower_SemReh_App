@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/secreens/braian/braian_page.dart';
 import 'package:line_follower_controller/secreens/semreh/semreh_page.dart';
-import 'package:line_follower_controller/colors.dart' as colors;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,10 +36,9 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   child: Ink.image(
-                    image: NetworkImage('https://img.icons8.com/3d-fluency/344/3d-fluency-blue-car.png'),
+                    image: AssetImage('images/semreh.png'),
                     height: 180,
                     width: 180,
-                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -58,10 +56,9 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   child: Ink.image(
-                    image: NetworkImage('https://img.icons8.com/emoji/344/oncoming-automobile.png'),
+                    image: AssetImage('images/braia.png'),
                     height: 180,
                     width: 180,
-                    fit: BoxFit.cover,
                   ),
                 ),
               ),

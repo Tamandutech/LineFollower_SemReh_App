@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 
 class ArrowSpinner extends StatefulWidget {
-  const ArrowSpinner({Key? key}) : super(key: key);
+  ArrowSpinner({Key? key}) : super(key: key);
 
   @override
   State<ArrowSpinner> createState() => _ArrowSpinnerState();
 }
 
 class _ArrowSpinnerState extends State<ArrowSpinner> {
-
   List<String> straight = ['Reta', 'Curva', 'S.M'];
   String? selectedStraight = 'Reta';
+
 
   @override
   Widget build(BuildContext context) {

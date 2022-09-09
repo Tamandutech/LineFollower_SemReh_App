@@ -26,6 +26,7 @@ class _ContainerControllerState extends State<ContainerController> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 340,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -53,7 +54,7 @@ class _ContainerControllerState extends State<ContainerController> {
                         ),
                       ),
                       Container(
-                        width: 200,
+                        width: 174,
                         margin:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 0),
                         padding:

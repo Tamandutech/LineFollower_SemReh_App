@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 import 'package:line_follower_controller/widgets/otp_input.dart';
+import 'package:line_follower_controller/widgets/arrow_with_spineer.dart';
 
 class KdController extends StatefulWidget {
   const KdController({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _KdController extends State<KdController> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 340,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -53,7 +55,7 @@ class _KdController extends State<KdController> {
                         ),
                       ),
                       Container(
-                        width: 200,
+                        width: 174,
                         margin:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 0),
                         padding:

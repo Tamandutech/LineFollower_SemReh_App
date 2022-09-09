@@ -32,7 +32,10 @@ class _SemrehPageState extends State<SemrehPage> {
               const SizedBox(
                 height: 30,
               ),
-              RecommendedSection()
+              RecommendedSection(),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),
