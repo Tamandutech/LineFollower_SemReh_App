@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
+import 'package:line_follower_controller/widgets/main_container.dart';
 
 class PidSpinner extends StatefulWidget {
   const PidSpinner({Key? key}) : super(key: key);
@@ -11,6 +12,8 @@ class PidSpinner extends StatefulWidget {
 class _PidSpinnerState extends State<PidSpinner> {
   List<String> straight = ['Reta', 'Curva'];
   String? selectedStraight = 'Reta';
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,7 @@ class _PidSpinnerState extends State<PidSpinner> {
             onChanged: (String? newValue) {
               setState(() {
                 selectedStraight = newValue!;
+
               });
             },
             items: straight.map<DropdownMenuItem<String>>((String value) {

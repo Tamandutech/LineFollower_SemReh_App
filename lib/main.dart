@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:line_follower_controller/connection.dart';
 import 'package:line_follower_controller/led.dart';
+import 'package:line_follower_controller/home_page.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FutureBuilder(
@@ -61,7 +63,8 @@ class Home extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return ChatPage(server: device);
+                     ChatPage(server: device);
+                     return HomePage();
                   },
                 ),
               );

@@ -1,30 +1,66 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 import 'package:line_follower_controller/widgets/otp_input.dart';
 
 class ContainerController extends StatefulWidget {
-  const ContainerController({Key? key}) : super(key: key);
+  String? pista;
+
+  ContainerController({Key? key, this.pista}) : super(key: key);
 
   @override
   State<ContainerController> createState() => _ContainerControllerState();
 }
 
 class _ContainerControllerState extends State<ContainerController> {
-  final TextEditingController _fieldOne = TextEditingController();
-  final TextEditingController _fieldTwo = TextEditingController();
-  final TextEditingController _fieldThree = TextEditingController();
-  final TextEditingController _fieldFour = TextEditingController();
-  final TextEditingController _fieldFive = TextEditingController();
+  TextEditingController _fieldOne = TextEditingController(text: '0');
+  TextEditingController _fieldTwo = TextEditingController(text: '0');
+  TextEditingController _fieldThree = TextEditingController(text: '0');
+  TextEditingController _fieldFour = TextEditingController(text: '0');
+  TextEditingController _fieldFive = TextEditingController(text: '0');
+
+  String kpRetaValor1 = '00000';
+  String kpRetaValor2 = '00000';
+  String kpCurvaValor1 = '00000';
+  String kpCurvaValor2 = '00000';
 
   // This is the entered code
   // It will be displayed in a Text widget
-  String? _otp;
+  String? _otp = '000000';
 
-  List<String> values = ['VALOR 1', 'VALOR 2', 'VALOR 3'];
+  List<String> values = ['VALOR 1', 'VALOR 2'];
   String? selectedItem = 'VALOR 1';
+
+
 
   @override
   Widget build(BuildContext context) {
+
+    exibirValor(String valor) {
+      _fieldOne = TextEditingController(text: valor[0]);
+      _fieldTwo = TextEditingController(text: valor[1]);
+      _fieldThree = TextEditingController(text: valor[2]);
+      _fieldFour = TextEditingController(text: valor[3]);
+      _fieldFive = TextEditingController(text: valor[4]);
+    }
+
+    if (widget.pista == 'Reta') {
+      if (selectedItem == 'VALOR 1') {
+        exibirValor(kpRetaValor1);
+      }
+      if (selectedItem == 'VALOR 2'){
+        exibirValor(kpRetaValor2);
+      }
+    }
+    if (widget.pista == 'Curva') {
+      if (selectedItem == 'VALOR 1') {
+        exibirValor(kpCurvaValor1);
+      } else {
+        exibirValor(kpCurvaValor2);
+      }
+    }
+
     return Container(
         width: 340,
         padding: const EdgeInsets.all(20),
@@ -77,6 +113,8 @@ class _ContainerControllerState extends State<ContainerController> {
                           onChanged: (String? newValue) {
                             setState(() {
                               selectedItem = newValue!;
+
+
                             });
                           },
                           items: values
@@ -125,6 +163,28 @@ class _ContainerControllerState extends State<ContainerController> {
                       _fieldThree.text +
                       _fieldFour.text +
                       _fieldFive.text;
+
+                  if (widget.pista == 'Reta') {
+                    if (selectedItem == 'VALOR 1') {
+                      kpRetaValor1 = _otp!;
+                      print(kpRetaValor1);
+                    }
+                    if (selectedItem == 'VALOR 2'){
+                      kpRetaValor2 = _otp!;
+                      print(kpRetaValor2);
+                    }
+                  }
+                  if (widget.pista == 'Curva') {
+                    if (selectedItem == 'VALOR 1') {
+                      kpCurvaValor1 = _otp!;
+                      print(kpCurvaValor1);
+                    }
+                    if (selectedItem == 'VALOR 2') {
+                      kpCurvaValor2 = _otp!;
+                      print(kpCurvaValor2);
+                    }
+                  }
+                  print('ENVIAR');
                 });
               },
               style: ButtonStyle(
