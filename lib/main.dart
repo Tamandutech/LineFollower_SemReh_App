@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+
       home: FutureBuilder(
         future: FlutterBluetoothSerial.instance.requestEnable(),
         builder: (context, future) {
@@ -63,8 +64,8 @@ class Home extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                     ChatPage(server: device);
-                     return HomePage();
+                     // ChatPage(server: device);
+                     return HomePage(server: device);
                   },
                 ),
               );

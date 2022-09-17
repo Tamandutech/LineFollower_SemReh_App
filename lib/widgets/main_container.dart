@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:line_follower_controller/colors.dart' as colors;
 import 'package:line_follower_controller/widgets/kd_controller.dart';
 import 'package:line_follower_controller/widgets/kp_controller.dart';
-import 'package:line_follower_controller/widgets/pid_spinner.dart';
 
 class MainContainer extends StatefulWidget {
   const MainContainer({Key? key}) : super(key: key);

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:line_follower_controller/secreens/braian/braian_page.dart';
+import 'package:line_follower_controller/led.dart';
 import 'package:line_follower_controller/secreens/semreh/semreh_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+  final BluetoothDevice server;
+
+  const HomePage({Key? key, required this.server}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -52,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                   splashColor: Colors.greenAccent,
                   onTap: () {
                     Future.delayed(Duration(milliseconds: 500), (){
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BraianPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChatPage(server: widget.server)));
                     });
                   },
                   child: Ink.image(
