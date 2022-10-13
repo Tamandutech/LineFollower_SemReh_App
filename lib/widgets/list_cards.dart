@@ -39,6 +39,8 @@ class RecommendedSection extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 SpeedController(),
+
+
                 SizedBox(width: 15,),
                 StopButton(),
                 SizedBox(width: 15,),

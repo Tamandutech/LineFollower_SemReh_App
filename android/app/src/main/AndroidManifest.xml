@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.line_follower_controller">
    <application
-        android:label="line_follower_controller"
+        android:label="Tamandutech LFC"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

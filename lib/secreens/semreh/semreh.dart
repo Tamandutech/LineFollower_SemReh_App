@@ -4,11 +4,10 @@ import 'package:line_follower_controller/widgets/main_container.dart';
 import 'package:line_follower_controller/widgets/list_cards.dart';
 import 'package:line_follower_controller/widgets/otp_input.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:line_follower_controller/widgets/arrow_with_spineer.dart';
 import 'dart:typed_data';
 
-
 class Semreh extends StatefulWidget {
-
   final BluetoothDevice server;
 
   const Semreh({required this.server});
@@ -25,9 +24,11 @@ class _Message {
 }
 
 class _SemrehPageState extends State<Semreh> {
-
   List<String> straight = ['Reta', 'Curva'];
   String? selectedStraight = 'Reta';
+
+  List<String> straightV = ['Reta', 'Curva', 'SM'];
+  String? selectedStraightV = 'Reta';
 
   TextEditingController _fieldOne = TextEditingController(text: '0');
   TextEditingController _fieldTwo = TextEditingController(text: '0');
@@ -41,6 +42,10 @@ class _SemrehPageState extends State<Semreh> {
   TextEditingController _fieldFourKd = TextEditingController(text: '0');
   TextEditingController _fieldFiveKd = TextEditingController(text: '0');
 
+  TextEditingController _fieldOneV = TextEditingController(text: '0');
+  TextEditingController _fieldTwoV = TextEditingController(text: '0');
+  TextEditingController _fieldThreeV = TextEditingController(text: '0');
+
   String kpRetaValor1 = '00000';
   String kpRetaValor2 = '00000';
   String kpCurvaValor1 = '00000';
@@ -51,16 +56,28 @@ class _SemrehPageState extends State<Semreh> {
   String kdCurvaValor1 = '00000';
   String kdCurvaValor2 = '00000';
 
+  String vRetaValor1 = '00000';
+  String vRetaValor2 = '00000';
+  String vCurvaValor1 = '00000';
+  String vCurvaValor2 = '00000';
+
   // This is the entered code
   // It will be displayed in a Text widget
   String? _otp = '000000';
   String? _otpKd = '000000';
+  String? _otpV = '000000';
 
   List<String> values = ['VALOR 1', 'VALOR 2'];
   String? selectedItem = 'VALOR 1';
 
   List<String> valuesKd = ['VALOR 1', 'VALOR 2'];
   String? selectedItemKd = 'VALOR 1';
+
+  List<String> valuesV = ['VALOR 1', 'VALOR 2'];
+  String? selectedItemV = 'VALOR 1';
+
+  // This is the entered code
+  // It will be displayed in a Text widget
 
   static final clientID = 0;
   BluetoothConnection? connection = null;
@@ -69,7 +86,7 @@ class _SemrehPageState extends State<Semreh> {
   String _messageBuffer = '';
 
   final TextEditingController textEditingController =
-  new TextEditingController();
+      new TextEditingController();
   final ScrollController listScrollController = new ScrollController();
 
   bool isConnecting = true;
@@ -125,7 +142,6 @@ class _SemrehPageState extends State<Semreh> {
 
   @override
   Widget build(BuildContext context) {
-
     // final List<Row> list = messages.map((_message) {
     //   return Row(
     //     children: <Widget>[
@@ -150,18 +166,80 @@ class _SemrehPageState extends State<Semreh> {
     //   );
     // }).toList();
 
+    exibir(String valor, String variavel) {
+      if (variavel == "kp") {
+        _fieldOne = TextEditingController(text: valor[0]);
+        _fieldTwo = TextEditingController(text: valor[1]);
+        _fieldThree = TextEditingController(text: valor[2]);
+        _fieldFour = TextEditingController(text: valor[3]);
+        _fieldFive = TextEditingController(text: valor[4]);
+      }
+      if (variavel == "kd") {
+        _fieldOneKd = TextEditingController(text: valor[0]);
+        _fieldTwoKd = TextEditingController(text: valor[1]);
+        _fieldThreeKd = TextEditingController(text: valor[2]);
+        _fieldFourKd = TextEditingController(text: valor[3]);
+        _fieldFiveKd = TextEditingController(text: valor[4]);
+      }
+
+      if (variavel == "v") {
+        _fieldOneV = TextEditingController(text: valor[0]);
+        _fieldTwoV = TextEditingController(text: valor[1]);
+        _fieldThreeV = TextEditingController(text: valor[2]);
+      }
+    }
+
+    if (selectedStraight == 'Reta') {
+      // KP
+
+      if (selectedItem == 'VALOR 1') {
+        exibir(kpRetaValor1, "kp");
+      }
+      if (selectedItem == 'VALOR 2') {
+        exibir(kpRetaValor2, "kp");
+      }
+
+      // KD
+
+      if (selectedItemKd == 'VALOR 1') {
+        exibir(kdRetaValor1, "kd");
+      }
+      if (selectedItemKd == 'VALOR 2') {
+        exibir(kdRetaValor2, "kd");
+      }
+    }
+
+    // VELOCIDADE
+
+    if (selectedStraightV == 'Reta'){
+      if (selectedItemV == 'VALOR 1') {
+        exibir(vRetaValor1, "v");
+      }
+      if (selectedItemV == 'VALOR 2') {
+        exibir(vRetaValor2, "v");
+      }
+    }
+
+    if (selectedStraightV == 'Curva'){
+      if (selectedItemV == 'VALOR 1') {
+        exibir(vCurvaValor1, "v");
+      }
+      if (selectedItemV == 'VALOR 2') {
+        exibir(vCurvaValor2, "v");
+      }
+    }
+
 
 
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
-        // title: const Text('SEMREH CONTROLLER'),
+          // title: const Text('SEMREH CONTROLLER'),
           title: (isConnecting
               ? Text('Conectando bluetooth - ' + widget.server.name + '...')
               : isConnected
-              ? Text('SEMREH CONTROLLER - ' + widget.server.name)
-              : Text('SEMREH CONTROLLER - ' + widget.server.name))),
-
+                  ? Text('SEMREH CONTROLLER - ' + widget.server.name)
+                  : Text('SEMREH CONTROLLER - ' + widget.server.name))),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: SingleChildScrollView(
@@ -252,7 +330,6 @@ class _SemrehPageState extends State<Semreh> {
                             ),
                             child: Column(
                               children: [
-
                                 // Controle KP
 
                                 Container(
@@ -350,8 +427,7 @@ class _SemrehPageState extends State<Semreh> {
                                   height: 30,
                                 ),
                                 ElevatedButton(
-                                  onPressed: ()
-                                  {
+                                  onPressed: () {
                                     setState(() {
                                       _otp = _fieldOne.text +
                                           _fieldTwo.text +
@@ -382,7 +458,7 @@ class _SemrehPageState extends State<Semreh> {
                                         }
                                       }
                                       print('ENVIAR');
-                                      isConnected ? () => _sendMessage(kp) : null;
+                                      _sendMessage(kp);
                                     });
                                   },
                                   style: ButtonStyle(
@@ -407,7 +483,6 @@ class _SemrehPageState extends State<Semreh> {
                           SizedBox(
                             width: 15,
                           ),
-
 
                           // Controle KD
 
@@ -476,7 +551,7 @@ class _SemrehPageState extends State<Semreh> {
                                                     selectedItemKd = newValue!;
                                                   });
                                                 },
-                                                items: values.map<
+                                                items: valuesKd.map<
                                                         DropdownMenuItem<
                                                             String>>(
                                                     (String value) {
@@ -520,8 +595,7 @@ class _SemrehPageState extends State<Semreh> {
                                     height: 30,
                                   ),
                                   ElevatedButton(
-                                    onPressed: () =>
-                                    {
+                                    onPressed: () => {
                                       setState(() {
                                         _otpKd = _fieldOneKd.text +
                                             _fieldTwoKd.text +
@@ -554,7 +628,6 @@ class _SemrehPageState extends State<Semreh> {
                                         print('ENVIAR');
                                         _sendMessage(kd);
                                       })
-
                                     },
                                     style: ButtonStyle(
                                       shape: MaterialStateProperty.all<
@@ -587,7 +660,305 @@ class _SemrehPageState extends State<Semreh> {
               SizedBox(
                 height: 30,
               ),
-              RecommendedSection(),
+              SizedBox(
+                height: 300,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Velocidade',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                Row(
+                  children: [
+                    Container(
+                      width: 110,
+                      height: 35,
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [Color(0XFF58D68D ), colors.Colors.primaryColor]),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: DropdownButton<String>(
+                        borderRadius: BorderRadius.circular(12),
+                        dropdownColor: colors.Colors.primaryColor,
+                        value: selectedStraightV,
+                        isExpanded: true,
+                        icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedStraightV = newValue!;
+                          });
+                        },
+                        items: straightV.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Icon(Icons.arrow_forward_rounded, color: Colors.green),
+                  ],
+                ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Expanded(
+                      child: ListView(
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        children: [
+                          // VELOCIDADE
+
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color:
+                                                    colors.Colors.contrastColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            padding: const EdgeInsets.all(10),
+                                            child: Icon(
+                                              Icons.flash_on_rounded,
+                                              color: colors.Colors.primaryColor,
+                                              size: 40,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 150,
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 15, vertical: 0),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
+                                                  color: colors
+                                                      .Colors.primaryColor,
+                                                  width: 2),
+                                            ),
+                                            child: DropdownButton<String>(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              value: selectedItemV,
+                                              isExpanded: true,
+                                              icon: const Icon(
+                                                  Icons.arrow_drop_down,
+                                                  color: Colors.green),
+                                              style: const TextStyle(
+                                                  color: Colors.green,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                              onChanged: (String? newValue) {
+                                                setState(() {
+                                                  selectedItemV = newValue!;
+                                                });
+                                              },
+                                              items: valuesV.map<
+                                                      DropdownMenuItem<String>>(
+                                                  (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: Text(value),
+                                                );
+                                              }).toList(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 26,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OtpInput(_fieldOneV, true),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    OtpInput(_fieldTwoV, false),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    OtpInput(_fieldThreeV, false),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _otpV = _fieldOneV.text +
+                                          _fieldTwoV.text +
+                                          _fieldThreeV.text;
+
+                                      String velocidade = 'v;${_otpV!}';
+
+                                      if (selectedStraightV == 'Reta') {
+                                        if (selectedItemV == 'VALOR 1') {
+                                          vRetaValor1 = _otpV!;
+                                          print(vRetaValor1);
+                                        }
+                                        if (selectedItemV == 'VALOR 2') {
+                                          vRetaValor2 = _otpV!;
+                                          print(vRetaValor2);
+                                        }
+                                      }
+                                      if (selectedStraightV == 'Curva') {
+                                        if (selectedItemV == 'VALOR 1') {
+                                          vCurvaValor1 = _otpV!;
+                                          print(vCurvaValor1);
+                                        }
+                                        if (selectedItemV == 'VALOR 2') {
+                                          vCurvaValor2 = _otpV!;
+                                          print(vCurvaValor2);
+                                        }
+                                      }
+
+                                      if (selectedStraightV == 'S.M') {
+                                        if (selectedItemV == 'VALOR 1') {
+                                          vCurvaValor1 = _otpV!;
+                                          print(vCurvaValor1);
+                                        }
+                                        if (selectedItemV == 'VALOR 2') {
+                                          vCurvaValor2 = _otpV!;
+                                          print(vCurvaValor2);
+                                        }
+                                      }
+
+                                      print('ENVIAR');
+                                      _sendMessage(velocidade);
+                                    });
+                                  },
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                          side: BorderSide(
+                                              color:
+                                                  colors.Colors.contrastColor)),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'ENVIAR',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: 15,
+                          ),
+
+                          Container(
+                            width: 250,
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                              child: Material(
+                                elevation: 8,
+                                shape: CircleBorder(),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: InkWell(
+                                  splashColor: Colors.green,
+                                  onTap: () {
+                                    print('STOP');
+                                    _sendMessage('s');
+                                  },
+                                  child: Ink.image(
+                                    image: AssetImage('images/stop.png'),
+                                    height: 180,
+                                    width: 180,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: 15,
+                          ),
+
+                          Container(
+                            width: 250,
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                              child: Material(
+                                elevation: 8,
+                                shape: CircleBorder(),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: InkWell(
+                                  splashColor: Colors.green,
+                                  onTap: () {
+                                    print('RESET');
+                                    _sendMessage('r');
+                                  },
+                                  child: Ink.image(
+                                    image: AssetImage('images/reset.png'),
+                                    height: 180,
+                                    width: 180,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
               SizedBox(
                 height: 30,
               ),
@@ -597,6 +968,7 @@ class _SemrehPageState extends State<Semreh> {
       ),
     );
   }
+
   void _onDataReceived(Uint8List data) {
     // Allocate buffer for parsed data
     int backspacesCounter = 0;
@@ -632,7 +1004,7 @@ class _SemrehPageState extends State<Semreh> {
             1,
             backspacesCounter > 0
                 ? _messageBuffer.substring(
-                0, _messageBuffer.length - backspacesCounter)
+                    0, _messageBuffer.length - backspacesCounter)
                 : _messageBuffer + dataString.substring(0, index),
           ),
         );
@@ -641,18 +1013,17 @@ class _SemrehPageState extends State<Semreh> {
     } else {
       _messageBuffer = (backspacesCounter > 0
           ? _messageBuffer.substring(
-          0, _messageBuffer.length - backspacesCounter)
+              0, _messageBuffer.length - backspacesCounter)
           : _messageBuffer + dataString);
     }
   }
 
-  void _sendMessage(String text) async{
+  void _sendMessage(String text) async {
     text = text.trim();
     textEditingController.clear();
 
     if (text.length > 0) {
       try {
-
         // connection.output.add(utf8.encode(text + "\r\n"));
         // await connection.output.allSent;
 
