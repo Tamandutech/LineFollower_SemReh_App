@@ -82,9 +82,9 @@ class _MainContainer extends State<MainContainer> {
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               children: [
-                ContainerController(pista: selectedStraight,),
+                KpController(pista: selectedStraight),
                 SizedBox(width: 15,),
-                KdController(),
+                KdController(pista: selectedStraight),
                 SizedBox(width: 15,),
 
               ],

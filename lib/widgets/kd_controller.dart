@@ -4,7 +4,9 @@ import 'package:line_follower_controller/widgets/otp_input.dart';
 import 'package:line_follower_controller/widgets/arrow_with_spineer.dart';
 
 class KdController extends StatefulWidget {
-  const KdController({Key? key}) : super(key: key);
+  String? pista;
+
+  KdController({Key? key, this.pista}) : super(key: key);
 
   @override
   State<KdController> createState() => _KdController();

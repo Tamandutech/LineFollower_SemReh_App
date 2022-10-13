@@ -24,16 +24,16 @@ class _SemrehPageState extends State<SemrehPage> {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
+            children: const [
+              SizedBox(
                 height: 30,
               ),
               MainContainer(),
-              const SizedBox(
+              SizedBox(
                 height: 30,
               ),
               RecommendedSection(),
-              const SizedBox(
+              SizedBox(
                 height: 30,
               ),
             ],

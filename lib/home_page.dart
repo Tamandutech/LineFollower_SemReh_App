@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:line_follower_controller/secreens/braian/braian_page.dart';
 import 'package:line_follower_controller/led.dart';
-import 'package:line_follower_controller/secreens/semreh/semreh_page.dart';
+import 'package:line_follower_controller/secreens/semreh/semreh.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                   splashColor: Colors.greenAccent,
                   onTap: () {
                     Future.delayed(Duration(milliseconds: 500), (){
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SemrehPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Semreh(server: widget.server)));
                     });
                   },
                   child: Ink.image(
