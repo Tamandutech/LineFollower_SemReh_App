@@ -435,25 +435,30 @@ class _SemrehPageState extends State<Semreh> {
                                           _fieldFour.text +
                                           _fieldFive.text;
 
-                                      String kp = 'kp;${_otp!}';
+                                      //String kp = 'kp;${_otp!}';
 
                                       if (selectedStraight == 'Reta') {
                                         if (selectedItem == 'VALOR 1') {
                                           kpRetaValor1 = _otp!;
+                                          _sendMessage('kpR;${kpRetaValor1!}');
+
                                           print(kpRetaValor1);
                                         }
                                         if (selectedItem == 'VALOR 2') {
                                           kpRetaValor2 = _otp!;
+                                          _sendMessage('kpR;${kpRetaValor2!}');
                                           print(kpRetaValor2);
                                         }
                                       }
                                       if (selectedStraight == 'Curva') {
                                         if (selectedItem == 'VALOR 1') {
                                           kpCurvaValor1 = _otp!;
+                                          _sendMessage('kpC;${kpCurvaValor1!}');
                                           print(kpCurvaValor1);
                                         }
                                         if (selectedItem == 'VALOR 2') {
                                           kpCurvaValor2 = _otp!;
+                                          _sendMessage('kpC;${kpCurvaValor2!}');
                                           print(kpCurvaValor2);
                                         }
                                       }
@@ -603,21 +608,24 @@ class _SemrehPageState extends State<Semreh> {
                                             _fieldFourKd.text +
                                             _fieldFiveKd.text;
 
-                                        String kd = 'kd;${_otpKd!}';
+                                        //String kd = 'kd;${_otpKd!}';
 
                                         if (selectedStraight == 'Reta') {
                                           if (selectedItemKd == 'VALOR 1') {
                                             kdRetaValor1 = _otpKd!;
+                                            _sendMessage('kdR;${kpRetaValor1!}');
                                             print(kdRetaValor1);
                                           }
                                           if (selectedItemKd == 'VALOR 2') {
                                             kdRetaValor2 = _otpKd!;
+                                            _sendMessage('kdR;${kpRetaValor2!}');
                                             print(kdRetaValor2);
                                           }
                                         }
                                         if (selectedStraight == 'Curva') {
                                           if (selectedItemKd == 'VALOR 1') {
                                             kdCurvaValor1 = _otpKd!;
+                                            _sendMessage('kdR;${kpRetaValor2!}');
                                             print(kdCurvaValor1);
                                           }
                                           if (selectedItemKd == 'VALOR 2') {
@@ -626,7 +634,7 @@ class _SemrehPageState extends State<Semreh> {
                                           }
                                         }
                                         print('ENVIAR');
-                                        _sendMessage(kd);
+                                    
                                       })
                                     },
                                     style: ButtonStyle(
