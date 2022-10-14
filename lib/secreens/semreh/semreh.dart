@@ -56,10 +56,12 @@ class _SemrehPageState extends State<Semreh> {
   String kdCurvaValor1 = '00000';
   String kdCurvaValor2 = '00000';
 
-  String vRetaValor1 = '00000';
-  String vRetaValor2 = '00000';
-  String vCurvaValor1 = '00000';
-  String vCurvaValor2 = '00000';
+  String vRetaValor1 = '000';
+  String vRetaValor2 = '000';
+  String vCurvaValor1 = '000';
+  String vCurvaValor2 = '000';
+  String vSemMapeamento1 = '000';
+  String vSemMapeamento2 = '000';
 
   // This is the entered code
   // It will be displayed in a Text widget
@@ -211,7 +213,7 @@ class _SemrehPageState extends State<Semreh> {
 
     // VELOCIDADE
 
-    if (selectedStraightV == 'Reta'){
+    if (selectedStraightV == 'Reta') {
       if (selectedItemV == 'VALOR 1') {
         exibir(vRetaValor1, "v");
       }
@@ -220,7 +222,7 @@ class _SemrehPageState extends State<Semreh> {
       }
     }
 
-    if (selectedStraightV == 'Curva'){
+    if (selectedStraightV == 'Curva') {
       if (selectedItemV == 'VALOR 1') {
         exibir(vCurvaValor1, "v");
       }
@@ -229,7 +231,14 @@ class _SemrehPageState extends State<Semreh> {
       }
     }
 
-
+    if (selectedStraightV == 'S.M') {
+      if (selectedItemV == 'VALOR 1') {
+        exibir(vSemMapeamento1, "v");
+      }
+      if (selectedItemV == 'VALOR 2') {
+        exibir(vSemMapeamento2, "v");
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
@@ -463,7 +472,6 @@ class _SemrehPageState extends State<Semreh> {
                                         }
                                       }
                                       print('ENVIAR');
-                                      _sendMessage(kp);
                                     });
                                   },
                                   style: ButtonStyle(
@@ -613,28 +621,32 @@ class _SemrehPageState extends State<Semreh> {
                                         if (selectedStraight == 'Reta') {
                                           if (selectedItemKd == 'VALOR 1') {
                                             kdRetaValor1 = _otpKd!;
-                                            _sendMessage('kdR;${kpRetaValor1!}');
+                                            _sendMessage(
+                                                'kdR;${kdRetaValor1!}');
                                             print(kdRetaValor1);
                                           }
                                           if (selectedItemKd == 'VALOR 2') {
                                             kdRetaValor2 = _otpKd!;
-                                            _sendMessage('kdR;${kpRetaValor2!}');
+                                            _sendMessage(
+                                                'kdR;${kdRetaValor2!}');
                                             print(kdRetaValor2);
                                           }
                                         }
                                         if (selectedStraight == 'Curva') {
                                           if (selectedItemKd == 'VALOR 1') {
                                             kdCurvaValor1 = _otpKd!;
-                                            _sendMessage('kdR;${kpRetaValor2!}');
+                                            _sendMessage(
+                                                'kdC;${kdCurvaValor1!}');
                                             print(kdCurvaValor1);
                                           }
                                           if (selectedItemKd == 'VALOR 2') {
                                             kdCurvaValor2 = _otpKd!;
+                                            _sendMessage(
+                                                'kdC;${kdCurvaValor2!}');
                                             print(kdCurvaValor2);
                                           }
                                         }
                                         print('ENVIAR');
-                                    
                                       })
                                     },
                                     style: ButtonStyle(
@@ -685,43 +697,50 @@ class _SemrehPageState extends State<Semreh> {
                               color: Colors.black,
                             ),
                           ),
-                Row(
-                  children: [
-                    Container(
-                      width: 110,
-                      height: 35,
-                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Color(0XFF58D68D ), colors.Colors.primaryColor]),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: DropdownButton<String>(
-                        borderRadius: BorderRadius.circular(12),
-                        dropdownColor: colors.Colors.primaryColor,
-                        value: selectedStraightV,
-                        isExpanded: true,
-                        icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            selectedStraightV = newValue!;
-                          });
-                        },
-                        items: straightV.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Icon(Icons.arrow_forward_rounded, color: Colors.green),
-                  ],
-                ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 110,
+                                height: 35,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 15),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(colors: [
+                                      Color(0XFF58D68D),
+                                      colors.Colors.primaryColor
+                                    ]),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: DropdownButton<String>(
+                                  borderRadius: BorderRadius.circular(12),
+                                  dropdownColor: colors.Colors.primaryColor,
+                                  value: selectedStraightV,
+                                  isExpanded: true,
+                                  icon: const Icon(Icons.keyboard_arrow_down,
+                                      color: Colors.white),
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedStraightV = newValue!;
+                                    });
+                                  },
+                                  items: straightV
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Icon(Icons.arrow_forward_rounded,
+                                  color: Colors.green),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -838,25 +857,29 @@ class _SemrehPageState extends State<Semreh> {
                                           _fieldTwoV.text +
                                           _fieldThreeV.text;
 
-                                      String velocidade = 'v;${_otpV!}';
+                                      //String velocidade = 'v;${_otpV!}';
 
                                       if (selectedStraightV == 'Reta') {
                                         if (selectedItemV == 'VALOR 1') {
                                           vRetaValor1 = _otpV!;
+                                          _sendMessage('vR;${vRetaValor1!}');
                                           print(vRetaValor1);
                                         }
                                         if (selectedItemV == 'VALOR 2') {
                                           vRetaValor2 = _otpV!;
+                                          _sendMessage('vR;${vRetaValor2!}');
                                           print(vRetaValor2);
                                         }
                                       }
                                       if (selectedStraightV == 'Curva') {
                                         if (selectedItemV == 'VALOR 1') {
                                           vCurvaValor1 = _otpV!;
+                                          _sendMessage('vC;${vCurvaValor1!}');
                                           print(vCurvaValor1);
                                         }
                                         if (selectedItemV == 'VALOR 2') {
                                           vCurvaValor2 = _otpV!;
+                                          _sendMessage('vC;${vCurvaValor2!}');
                                           print(vCurvaValor2);
                                         }
                                       }
@@ -864,16 +887,18 @@ class _SemrehPageState extends State<Semreh> {
                                       if (selectedStraightV == 'S.M') {
                                         if (selectedItemV == 'VALOR 1') {
                                           vCurvaValor1 = _otpV!;
+                                          _sendMessage('vSM;${vSemMapeamento1!}');
                                           print(vCurvaValor1);
                                         }
                                         if (selectedItemV == 'VALOR 2') {
                                           vCurvaValor2 = _otpV!;
+                                          _sendMessage('vSM;${vSemMapeamento2!}');
                                           print(vCurvaValor2);
                                         }
                                       }
 
                                       print('ENVIAR');
-                                      _sendMessage(velocidade);
+                                  
                                     });
                                   },
                                   style: ButtonStyle(
